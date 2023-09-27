@@ -5,7 +5,7 @@ export const HistorialContext = React.createContext();
 const HistorialProvider = (props) => {
     const [historial, setHistorial] = React.useState([]);
 
-    return <HistorialProvider.Provider value={{historial, setHistorial}}>{props.children}</HistorialProvider.Provider>
+    return <HistorialContext.Provider value={{historial, setHistorial}}>{props.children}</HistorialContext.Provider>
 }
 
 export default HistorialProvider;
