@@ -10,8 +10,11 @@ import TRojo from "../img/Rojo.PNG";
 import TVerde from "../img/Verde.PNG";
 import { HistorialContext } from "../context/HistorialContext";
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
-const Home = () => {
+const Home = (props) => {
+  const elHistorial = window.localStorage
+
   const [resultado, setResultado] = useState("");
 
   const [nombreTacho, setNombreTacho] = useState("Elegir Tacho...");
@@ -24,6 +27,12 @@ const Home = () => {
   useEffect(() => {
     cambiarTacho()
   }, [resultado])
+
+  useEffect(() => {
+    console.log("Se guardaron los datos.")
+    elHistorial.setItem("Historial", JSON.stringify(historial))
+    console.log(historial)
+  },[historial])
 
   const [value, setValue] = useState("Buscar...");
 
@@ -73,7 +82,6 @@ const Home = () => {
       fecha: new Date()
     }]
     setHistorial(newData)
-    console.log(historial)
   };
 
   const cambiarTacho = () => {
